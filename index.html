@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Real-Time Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script type="module" src="app.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar for Rooms -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-comments"></i> Chat Rooms</h2>
+            </div>
+            
+            <div class="user-section">
+                <input type="text" id="usernameInput" placeholder="Enter your username" maxlength="20">
+                <button id="setUsernameBtn"><i class="fas fa-check"></i></button>
+                <span id="currentUser"></span>
+            </div>
+
+            <div class="rooms-section">
+                <div class="section-header">
+                    <h3>Public Rooms</h3>
+                </div>
+                <div class="room-list" id="publicRooms">
+                    <!-- Public rooms will appear here -->
+                </div>
+                
+                <div class="section-header">
+                    <h3>Create Private Room</h3>
+                </div>
+                <button id="createRoomBtn" class="create-room-btn">
+                    <i class="fas fa-plus"></i> Create New Room
+                </button>
+                
+                <div class="section-header">
+                    <h3>Join Private Room</h3>
+                </div>
+                <div class="join-room">
+                    <input type="text" id="roomCodeInput" placeholder="Enter 6-digit code" maxlength="6">
+                    <button id="joinRoomBtn"><i class="fas fa-sign-in-alt"></i></button>
+                </div>
+
+                <div class="section-header">
+                    <h3>Your Rooms</h3>
+                </div>
+                <div class="room-list" id="privateRooms">
+                    <!-- Joined rooms will appear here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="main-content">
+            <div class="chat-header">
+                <div class="room-info">
+                    <h1 id="currentRoomName">Select a Room</h1>
+                    <span id="roomCodeDisplay"></span>
+                </div>
+                <div class="room-actions">
+                    <button id="deleteRoomBtn" class="delete-btn" style="display: none;">
+                        <i class="fas fa-trash"></i> Delete Room
+                    </button>
+                </div>
+            </div>
+            
+            <div class="messages-container" id="messagesContainer">
+                <div class="welcome-message">
+                    <i class="fas fa-comments fa-3x"></i>
+                    <h3>Welcome to Advanced Chat!</h3>
+                    <p>Select a room or create your own to start chatting</p>
+                </div>
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator"></div>
+            
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <input type="text" id="messageInput" placeholder="Type your message..." disabled>
+                    <div class="reaction-picker" id="reactionPicker" style="display: none;">
+                        <span class="reaction-option" data-emoji="👍">👍</span>
+                        <span class="reaction-option" data-emoji="❤️">❤️</span>
+                        <span class="reaction-option" data-emoji="😂">😂</span>
+                        <span class="reaction-option" data-emoji="😮">😮</span>
+                        <span class="reaction-option" data-emoji="😢">😢</span>
+                        <span class="reaction-option" data-emoji="🎉">🎉</span>
+                    </div>
+                    <button id="reactionBtn" class="reaction-btn" disabled>
+                        <i class="fas fa-smile"></i>
+                    </button>
+                    <button id="sendButton" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room Creation Modal -->
+    <div id="roomModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Room</h2>
+            <input type="text" id="newRoomName" placeholder="Enter room name" maxlength="30">
+            <div class="modal-actions">
+                <button id="confirmCreateRoom">Create Room</button>
+                <button id="cancelCreateRoom">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
